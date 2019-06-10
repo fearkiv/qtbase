@@ -110,7 +110,7 @@ public:
         BundleType          =        0x0,
         AliasType           =        0x0,
 #endif
-#if defined(Q_OS_WIN)
+#if defined(Q_OS_WIN) && !defined(NO_LNK_LINK)
         WinLnkType          = 0x08000000,   // Note: Uses the same position for AliasType on Mac
 #else
         WinLnkType          =        0x0,

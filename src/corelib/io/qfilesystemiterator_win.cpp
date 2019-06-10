@@ -60,11 +60,13 @@ QFileSystemIterator::QFileSystemIterator(const QFileSystemEntry &entry, QDir::Fi
 {
     Q_UNUSED(nameFilters)
     Q_UNUSED(flags)
+#ifndef NO_LNK_LINK
     if (nativePath.endsWith(QLatin1String(".lnk"))) {
         QFileSystemMetaData metaData;
         QFileSystemEntry link = QFileSystemEngine::getLinkTarget(entry, metaData);
         nativePath = link.nativeFilePath();
     }
+#endif
     if (!nativePath.endsWith(QLatin1Char('\\')))
         nativePath.append(QLatin1Char('\\'));
     nativePath.append(QLatin1Char('*'));
